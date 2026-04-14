@@ -207,27 +207,50 @@
             IMPORTANT: Replace 'https://formspree.io/f/YOUR_FORM_ID' 
             with your actual Formspree endpoint URL from https://formspree.io
         -->
-      <form action="https://formspree.io/f/xkoknlrl" method="POST">
-    <!-- এটি ইমেইলের সাবজেক্টে ইউজারের ইমেইল দেখাবে -->
-    <input type="hidden" name="_subject" value="New Account Deletion Request">
+     <form action="https://formspree.io/f/xkoknlrl" method="POST">
 
+    <!-- Subject এ email দেখাবে -->
+    <input type="hidden" name="_subject" value="Account Deletion Request">
+
+    <!-- Email (Top Priority Field) -->
     <div class="form-group">
-        <label for="email">1. User Email Address</label>
-        <input type="email" id="email" name="1_User_Email" placeholder="example@gmail.com" required>
+        <label for="email">User Email Address</label>
+        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
     </div>
 
+    <!-- Hidden field to include email again in message top -->
+    <input type="hidden" name="message" id="messageField">
+
+    <!-- Reason -->
     <div class="form-group">
-        <label for="reason">2. Reason for leaving (Optional)</label>
-        <textarea id="reason" name="2_Delete_Reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
+        <label for="reason">Reason for leaving (Optional)</label>
+        <textarea id="reason" name="reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
     </div>
 
+    <!-- Confirmation -->
     <div class="checkbox-group">
-        <input type="checkbox" id="confirm" name="3_Confirmation" required>
-        <label for="confirm">I understand that this action is irreversible and all my data will be deleted.</label>
+        <input type="checkbox" id="confirm" name="confirm" required>
+        <label for="confirm">
+            I understand that this action is irreversible and all my data will be deleted.
+        </label>
     </div>
 
     <button type="submit" class="btn-submit">Submit Deletion Request</button>
+
 </form>
+
+<script>
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function () {
+        const email = document.getElementById("email").value;
+        const reason = document.getElementById("reason").value;
+
+        // Email + Reason combine করে message বানাবে (email থাকবে উপরে)
+        document.getElementById("messageField").value =
+            "User Email: " + email + "\n\nReason:\n" + reason;
+    });
+</script>
 
 
         <div class="footer">
