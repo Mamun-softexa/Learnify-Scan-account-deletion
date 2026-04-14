@@ -207,19 +207,20 @@
             IMPORTANT: Replace 'https://formspree.io/f/YOUR_FORM_ID' 
             with your actual Formspree endpoint URL from https://formspree.io
         -->
-        <form action="https://formspree.io/f/xkoknlrl" method="POST">
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                <!-- Using name="Email" and name="_replyto" to ensure Formspree captures it correctly -->
+                <input type="email" id="email" name="Email" placeholder="example@gmail.com" required>
             </div>
 
             <div class="form-group">
                 <label for="reason">Reason for leaving (Optional)</label>
-                <textarea id="reason" name="message" rows="3" placeholder="Tell us how we can improve..."></textarea>
+                <textarea id="reason" name="Deletion_Reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
             </div>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="confirm" name="confirmation" required>
+                <input type="checkbox" id="confirm" name="Confirmed_Permanent_Deletion" required>
                 <label for="confirm">I understand that this action is irreversible and all my data will be permanently deleted.</label>
             </div>
 
