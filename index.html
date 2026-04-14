@@ -61,7 +61,7 @@
 
         .logo-section {
             text-align: center;
-            margin-bottom: 32dp;
+            margin-bottom: 32px;
         }
 
         h1 {
@@ -203,55 +203,29 @@
             <p><strong>Warning:</strong> Deleting your account is permanent. All your scanned documents, saved notes, subscription status, and profile information will be wiped from our servers within 30 days of this request.</p>
         </div>
 
-        <!-- 
-            IMPORTANT: Replace 'https://formspree.io/f/YOUR_FORM_ID' 
-            with your actual Formspree endpoint URL from https://formspree.io
-        -->
-     <form action="https://formspree.io/f/xkoknlrl" method="POST">
+        <form action="https://formspree.io/f/xkoknlrl" method="POST">
+            <!-- Hidden field to put the email in the subject line -->
+            <input type="hidden" name="_subject" value="Account Deletion Request">
 
-    <!-- Subject এ email দেখাবে -->
-    <input type="hidden" name="_subject" value="Account Deletion Request">
+            <div class="form-group">
+                <label for="email">User Email Address</label>
+                <!-- name="1_User_Email" ensures it appears first in the email body -->
+                <input type="email" id="email" name="1_User_Email" placeholder="example@gmail.com" required>
+            </div>
 
-    <!-- Email (Top Priority Field) -->
-    <div class="form-group">
-        <label for="email">User Email Address</label>
-        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-    </div>
+            <div class="form-group">
+                <label for="reason">Reason for leaving (Optional)</label>
+                <!-- name="2_Deletion_Reason" ensures it appears second -->
+                <textarea id="reason" name="2_Deletion_Reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
+            </div>
 
-    <!-- Hidden field to include email again in message top -->
-    <input type="hidden" name="message" id="messageField">
+            <div class="checkbox-group">
+                <input type="checkbox" id="confirm" name="3_Confirmation" required>
+                <label for="confirm">I understand that this action is irreversible and all my data will be deleted.</label>
+            </div>
 
-    <!-- Reason -->
-    <div class="form-group">
-        <label for="reason">Reason for leaving (Optional)</label>
-        <textarea id="reason" name="reason" rows="3" placeholder="Tell us how we can improve..."></textarea>
-    </div>
-
-    <!-- Confirmation -->
-    <div class="checkbox-group">
-        <input type="checkbox" id="confirm" name="confirm" required>
-        <label for="confirm">
-            I understand that this action is irreversible and all my data will be deleted.
-        </label>
-    </div>
-
-    <button type="submit" class="btn-submit">Submit Deletion Request</button>
-
-</form>
-
-<script>
-    const form = document.querySelector("form");
-
-    form.addEventListener("submit", function () {
-        const email = document.getElementById("email").value;
-        const reason = document.getElementById("reason").value;
-
-        // Email + Reason combine করে message বানাবে (email থাকবে উপরে)
-        document.getElementById("messageField").value =
-            "User Email: " + email + "\n\nReason:\n" + reason;
-    });
-</script>
-
+            <button type="submit" class="btn-submit">Submit Deletion Request</button>
+        </form>
 
         <div class="footer">
             <p>&copy; 2026 Learnify Scan. All rights reserved.</p>
